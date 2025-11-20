@@ -1,0 +1,53 @@
+<div class="min-h-screen bg-gradient-to-br from-slate-50 to-blue-100 py-12 px-4">
+  <div class="max-w-2xl mx-auto">
+    <div class="bg-white shadow-2xl rounded-2xl overflow-hidden">
+      <!-- Header -->
+      <div class="bg-gradient-to-r from-indigo-600 to-purple-600 px-8 py-6">
+        <h1 class="text-3xl font-bold text-white">Create a New Story</h1>
+        <p class="text-indigo-100 mt-2">Start capturing a life story</p>
+      </div>
+
+      <!-- Form -->
+      <div class="p-8">
+        <%= form_with(model: @story, class: "space-y-6") do |f| %>
+          
+          <div>
+            <%= f.label :title, "Story Title", class: "block text-sm font-bold text-gray-700 mb-2" %>
+            <%= f.text_field :title, class: "w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 text-lg", placeholder: "e.g., John Smith's Life Story", required: true, autofocus: true %>
+            <p class="text-sm text-gray-500 mt-1">This will be the title of the autobiography</p>
+         </div>
+          
+          <div>
+            <%= f.label :subtitle, "Subtitle (Optional)", class: "block text-sm font-bold text-gray-700 mb-2" %>
+            <%= f.text_field :subtitle, class: "w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500", placeholder: "e.g., A Journey Through 85 Years" %>
+          </div>
+
+          <div class="pt-6 border-t-2 border-gray-200">
+            <div class="flex items-center justify-between">
+              <%= link_to "Cancel", dashboard_path, class: "text-gray-600 hover:text-gray-800 font-medium" %>
+              <%= f.submit "Continue to Profile →", class: "bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-8 py-3 rounded-lg font-bold hover:from-indigo-700 hover:to-purple-700 shadow-lg transform hover:scale-105 transition-all cursor-pointer" %>
+            </div>
+          </div>
+
+        <% end %>
+      </div>
+    </div>
+
+    <!-- Info Box -->
+    <div class="mt-8 bg-blue-50 border-l-4 border-blue-400 p-6 rounded-r-lg">
+      <div class="flex">
+        <div class="flex-shrink-0">
+          <svg class="h-6 w-6 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+        </div>
+        <div class="ml-3">
+          <h3 class="text-sm font-medium text-blue-800">Next Steps</h3>
+          <div class="mt-2 text-sm text-blue-700">
+            <p>After creating your story, you'll complete a profile to help us generate personalized chapters based on the person's life.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

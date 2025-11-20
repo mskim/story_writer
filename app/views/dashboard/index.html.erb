@@ -1,0 +1,93 @@
+<div class="min-h-screen bg-gradient-to-br from-slate-50 to-blue-100">
+  <!-- Navigation -->
+  <nav class="bg-white shadow-lg">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between h-16">
+        <div class="flex items-center">
+          <h1 class="text-2xl font-bold text-indigo-600">Story Writer</h1>
+        </div>
+        <div class="flex items-center space-x-4">
+          <span class="text-gray-700">Welcome, <%= Current.user.name %></span>
+          <%= button_to "Sign Out", session_path, method: :delete, class: "bg-gray-200 hover:bg-gray-300 px-4 py-2 rounded-lg text-gray-700 font-medium" %>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <!-- Header -->
+    <div class="mb-8">
+      <h1 class="text-4xl font-bold text-gray-900 mb-2">Dashboard</h1>
+      <p class="text-gray-600">Manage your life stories and collaborations</p>
+    </div>
+
+    <!-- My Stories Section -->
+    <div class="mb-12">
+      <div class="flex justify-between items-center mb-6">
+        <h2 class="text-2xl font-bold text-gray-800">My Stories</h2>
+        <%= link_to "Create New Story", new_story_path, class: "bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-6 py-3 rounded-lg font-bold hover:from-indigo-700 hover:to-purple-700 shadow-lg transform hover:scale-105 transition-all" %>
+      </div>
+
+      <% if @owned_stories.any? %>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <% @owned_stories.each do |story| %>
+            <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-shadow">
+              <div class="h-48 bg-gradient-to-br from-indigo-500 to-purple-500 flex items-center justify-center">
+                <span class="text-6xl">📖</span>
+              </div>
+              <div class="p-6">
+                <h3 class="text-xl font-bold text-gray-900 mb-2"><%= story.title %></h3>
+                <% if story.story_profile %>
+                  <p class="text-gray-600 mb-4"><%= story.story_profile.full_name %></p>
+                <% end %>
+                
+                <div class="flex items-center justify-between mb-4">
+                  <span class="px-3 py-1 bg-<%= story.status %>-100 text-<%= story.status %>-800 rounded-full text-sm font-medium">
+                    <%= story.status.titleize %>
+                  </span>
+                  <span class="text-sm text-gray-500"><%= story.chapters.count %> chapters</span>
+                </div>
+                
+                <%= link_to "Open Story", story, class: "block w-full text-center bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-lg font-medium transition-colors" %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      <% else %>
+        <div class="bg-white rounded-xl shadow-lg p-12 text-center">
+          <span class="text-6xl mb-4 block">✍️</span>
+          <h3 class="text-2xl font-bold text-gray-800 mb-2">No Stories Yet</h3>
+          <p class="text-gray-600 mb-6">Start creating your first life story!</p>
+          <%= link_to "Create Your First Story", new_story_path, class: "inline-block bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-8 py-3 rounded-lg font-bold hover:from-indigo-700 hover:to-purple-700 shadow-lg" %>
+        </div>
+      <% end %>
+    </div>
+
+    <!-- Collaborating Stories Section -->
+    <% if @assisted_stories.any? %>
+      <div class="mb-12">
+        <h2 class="text-2xl font-bold text-gray-800 mb-6">Stories I'm Helping With</h2>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <% @assisted_stories.each do |story| %>
+            <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-shadow border-2 border-yellow-200">
+              <div class="h-48 bg-gradient-to-br from-yellow-400 to-orange-400 flex items-center justify-center">
+                <span class="text-6xl">🤝</span>
+              </div>
+              <div class="p-6">
+                <h3 class="text-xl font-bold text-gray-900 mb-2"><%= story.title %></h3>
+                <% if story.story_profile %>
+                  <p class="text-gray-600 mb-2"><%= story.story_profile.full_name %></p>
+                <% end %>
+                <p class="text-sm text-gray-500 mb-4">Owned by <%= story.user.name %></p>
+                
+                <%= link_to "View Story", story, class: "block w-full text-center bg-yellow-600 hover:bg-yellow-700 text-white px-4 py-2 rounded-lg font-medium transition-colors" %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

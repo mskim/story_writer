@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  story: one
+  life_phase: one
+  title: MyString
+  description: MyText
+  chapter_number: 1
+  sort_order: 1
+
+two:
+  story: two
+  life_phase: two
+  title: MyString
+  description: MyText
+  chapter_number: 1
+  sort_order: 1

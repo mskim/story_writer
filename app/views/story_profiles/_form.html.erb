@@ -1,0 +1,200 @@
+<div class="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 py-12 px-4 sm:px-6 lg:px-8">
+  <div class="max-w-4xl mx-auto">
+    <div class="bg-white shadow-2xl rounded-2xl overflow-hidden">
+      <!-- Header -->
+      <div class="bg-gradient-to-r from-indigo-600 to-purple-600 px-8 py-6">
+        <h1 class="text-3xl font-bold text-white">Tell Us About <%= @story.title %></h1>
+        <p class="text-indigo-100 mt-2">This information helps us create personalized chapters for the life story</p>
+      </div>
+
+      <!-- Form -->
+      <div class="px-8 py-10">
+        <%= form_with(model: @profile, url: story_profile_path(@story), method: :post, class: "space-y-8") do |f| %>
+          
+          <!-- Personal Information Section -->
+          <div class="bg-gray-50 p-6 rounded-lg border-2 border-indigo-100">
+            <h2 class="text-2xl font-bold text-gray-800 mb-6 flex items-center">
+              <span class="bg-indigo-600 text-white rounded-full w-8 h-8 flex items-center justify-center mr-3">1</span>
+              Personal Information
+            </h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div class="md:col-span-2">
+                <%= f.label :full_name, "Full Name", class: "block text-sm font-medium text-gray-700 mb-2" %>
+                <%= f.text_field :full_name, class: "w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent", placeholder: "John Smith", required: true %>
+              </div>
+              
+              <div>
+                <%= f.label :birth_year, "Birth Year", class: "block text-sm font-medium text-gray-700 mb-2" %>
+                <%= f.number_field :birth_year, class: "w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent", placeholder: "1940", min: 1900, max: Time.current.year %>
+              </div>
+              
+              <div>
+                <%= f.label :current_age, "Current Age", class: "block text-sm font-medium text-gray-700 mb-2" %>
+                <%= f.number_field :current_age, class: "w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent", placeholder: "85", min: 0, max: 120 %>
+              </div>
+              
+              <div>
+                <%= f.label :gender, class: "block text-sm font-medium text-gray-700 mb-2" %>
+                <%= f.text_field :gender, class: "w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent", placeholder: "Male/Female/Other" %>
+              </div>
+              
+              <div>
+                <%= f.label :birthplace, "Birthplace", class: "block text-sm font-medium text-gray-700 mb-2" %>
+                <%= f.text_field :birthplace, class: "w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent", placeholder: "City, State/Country" %>
+              </div>
+            </div>
+          </div>
+
+          <!-- Education Section -->
+          <div class="bg-gray-50 p-6 rounded-lg border-2 border-indigo-100">
+            <h2 class="text-2xl font-bold text-gray-800 mb-6 flex items-center">
+              <span class="bg-indigo-600 text-white rounded-full w-8 h-8 flex items-center justify-center mr-3">2</span>
+              Education
+            </h2>
+            
+            <div class="space-y-6">
+              <div>
+                <%= f.label :education_level, "Highest Education Level", class: "block text-sm font-medium text-gray-700 mb-2" %>
+                <%= f.select :education_level, 
+                    [["Elementary", "elementary"], ["High School", "high_school"], ["College", "college"], ["Graduate School", "graduate"], ["Doctorate", "doctorate"], ["Other", "other"]], 
+                    { include_blank: "Select level" },
+                    class: "w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent" %>
+              </div>
+              
+              <div>
+                <%= f.label :schools_attended, "Schools Attended", class: "block text-sm font-medium text-gray-700 mb-2" %>
+                <%= f.text_area :schools_attended, rows: 3, class: "w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent", placeholder: "List schools (one per line or comma-separated)" %>
+                <p class="text-sm text-gray-500 mt-1">Example: Lincoln Elementary, Washington High School, UCLA</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Career Section -->
+          <div class="bg-gray-50 p-6 rounded-lg border-2 border-indigo-100">
+            <h2 class="text-2xl font-bold text-gray-800 mb-6 flex items-center">
+              <span class="bg-indigo-600 text-white rounded-full w-8 h-8 flex items-center justify-center mr-3">3</span>
+              Career & Work
+            </h2>
+            
+            <div class="space-y-6">
+              <div>
+                <%= f.label :primary_occupation, "Primary Occupation/Career", class: "block text-sm font-medium text-gray-700 mb-2" %>
+                <%= f.text_field :primary_occupation, class: "w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent", placeholder: "e.g., Teacher, Engineer, Nurse" %>
+              </div>
+              
+              <div>
+                <%= f.label :other_occupations, "Other Jobs/Careers", class: "block text-sm font-medium text-gray-700 mb-2" %>
+                <%= f.text_area :other_occupations, rows: 2, class: "w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent", placeholder: "List other significant jobs or careers" %>
+              </div>
+            </div>
+          </div>
+
+          <!-- Military Service Section -->
+          <div class="bg-gray-50 p-6 rounded-lg border-2 border-indigo-100">
+            <h2 class="text-2xl font-bold text-gray-800 mb-6 flex items-center">
+              <span class="bg-indigo-600 text-white rounded-full w-8 h-8 flex items-center justify-center mr-3">4</span>
+              Military Service
+            </h2>
+            
+            <div class="space-y-6">
+              <div class="flex items-center">
+                <%= f.check_box :military_service, class: "w-5 h-5 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500" %>
+                <%= f.label :military_service, "Served in the military", class: "ml-3 text-base font-medium text-gray-700" %>
+              </div>
+              
+              <div>
+                <%= f.label :military_details, "Service Details (branch, rank, years, deployment)", class: "block text-sm font-medium text-gray-700 mb-2" %>
+                <%= f.text_area :military_details, rows: 3, class: "w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent", placeholder: "e.g., US Navy, Petty Officer, 1965-1969, Vietnam" %>
+              </div>
+            </div>
+          </div>
+
+          <!-- Achievements & Life Events Section -->
+          <div class="bg-gray-50 p-6 rounded-lg border-2 border-indigo-100">
+            <h2 class="text-2xl font-bold text-gray-800 mb-6 flex items-center">
+              <span class="bg-indigo-600 text-white rounded-full w-8 h-8 flex items-center justify-center mr-3">5</span>
+              Achievements & Significant Events
+            </h2>
+            
+            <div class="space-y-6">
+              <div>
+                <%= f.label :major_awards, "Major Awards & Honors", class: "block text-sm font-medium text-gray-700 mb-2" %>
+                <%= f.text_area :major_awards, rows: 3, class: "w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent", placeholder: "List awards, honors, special recognitions" %>
+              </div>
+              
+              <div>
+                <%= f.label :significant_life_events, "Significant Life Events", class: "block text-sm font-medium text-gray-700 mb-2" %>
+                <%= f.text_area :significant_life_events, rows: 3, class: "w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent", placeholder: "Major life events, relocations, life-changing moments" %>
+              </div>
+              
+              <div>
+                <%= f.label :hobbies_interests, "Hobbies & Interests", class: "block text-sm font-medium text-gray-700 mb-2" %>
+                <%= f.text_area :hobbies_interests, rows: 2, class: "w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent", placeholder: "Hobbies, passions, clubs, activities" %>
+              </div>
+            </div>
+          </div>
+
+          <!-- Life Wisdom & Philosophy Section -->
+          <div class="bg-gradient-to-br from-purple-50 to-indigo-50 p-6 rounded-lg border-2 border-purple-200">
+            <h2 class="text-2xl font-bold text-gray-800 mb-6 flex items-center">
+              <span class="bg-purple-600 text-white rounded-full w-8 h-8 flex items-center justify-center mr-3">6</span>
+              Life Wisdom & Philosophy
+            </h2>
+            
+            <div class="space-y-6">
+              <div>
+                <%= f.label :influential_people, "People Who Influenced You Most", class: "block text-sm font-medium text-gray-700 mb-2" %>
+                <%= f.text_area :influential_people, rows: 3, class: "w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent", placeholder: "Who shaped who you became and how?" %>
+              </div>
+              
+              <div>
+                <%= f.label :life_mission, "Life's Mission or Purpose", class: "block text-sm font-medium text-gray-700 mb-2" %>
+                <%= f.text_area :life_mission, rows: 3, class: "w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent", placeholder: "What do you see as your life's mission or purpose?" %>
+              </div>
+              
+              <div>
+                <%= f.label :life_philosophy, "Philosophy on Life", class: "block text-sm font-medium text-gray-700 mb-2" %>
+                <%= f.text_area :life_philosophy, rows: 3, class: "w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent", placeholder: "Your philosophy on life, success, and happiness" %>
+              </div>
+              
+              <div>
+                <%= f.label :advice_to_children, "Advice to Children/Grandchildren", class: "block text-sm font-medium text-gray-700 mb-2" %>
+                <%= f.text_area :advice_to_children, rows: 3, class: "w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent", placeholder: "What wisdom would you pass on?" %>
+              </div>
+              
+              <div>
+                <%= f.label :greatest_lessons_learned, "Greatest Lessons Learned", class: "block text-sm font-medium text-gray-700 mb-2" %>
+                <%= f.text_area :greatest_lessons_learned, rows: 3, class: "w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent", placeholder: "The most important lessons life has taught you" %>
+              </div>
+            </div>
+          </div>
+
+          <!-- Submit Button -->
+          <div class="flex items-center justify-between pt-6 border-t-2 border-gray-200">
+            <%= link_to "Cancel", @story, class: "text-gray-600 hover:text-gray-800 font-medium" %>
+            <%= f.submit "Save Profile & Continue", class: "bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-8 py-4 rounded-lg font-bold text-lg shadow-lg hover:from-indigo-700 hover:to-purple-700 transform hover:scale-105 transition-all duration-200 cursor-pointer" %>
+          </div>
+
+        <% end %>
+      </div>
+    </div>
+
+    <!-- Help Text -->
+    <div class="mt-8 bg-blue-50 border-l-4 border-blue-400 p-6 rounded-r-lg">
+      <div class="flex">
+        <div class="flex-shrink-0">
+          <svg class="h-6 w-6 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+        </div>
+        <div class="ml-3">
+          <h3 class="text-sm font-medium text-blue-800">How This Works</h3>
+          <div class="mt-2 text-sm text-blue-700">
+            <p><strong>Automatic Chapter Generation:</strong> Based on the information you provide (especially age and education level), we'll automatically create personalized chapters for your life story. You can then add sections and content to each chapter, or edit/delete chapters as needed.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  story: one
+  user: one
+  permission_mode: MyString
+  role: MyString
+  status: MyString
+  invited_by: 1
+
+two:
+  story: two
+  user: two
+  permission_mode: MyString
+  role: MyString
+  status: MyString
+  invited_by: 1

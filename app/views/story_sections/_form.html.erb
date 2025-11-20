@@ -1,0 +1,82 @@
+<div class="min-h-screen bg-gradient-to-br from-slate-50 to-blue-100 py-12 px-4">
+  <div class="max-w-5xl mx-auto">
+    <div class="mb-6">
+      <%= link_to "← Back to Chapter", story_chapter_path(@story, @chapter), class: "text-indigo-600 hover:text-indigo-800 font-medium" %>
+    </div>
+
+    <div class="bg-white shadow-2xl rounded-2xl overflow-hidden">
+      <!-- Header -->
+      <div class="bg-gradient-to-r from-indigo-600 to-purple-600 px-8 py-6">
+        <h1 class="text-3xl font-bold text-white"><%= @section ? "Edit Section" : "New Section" %></h1>
+        <p class="text-indigo-100 mt-2">In <%= @chapter.title %></p>
+      </div>
+
+      <div class="p-8">
+        <%= form_with(model: @section, url: @section.persisted? ? story_chapter_section_path(@story, @chapter, @section) : story_chapter_sections_path(@story, @chapter), class: "space-y-8") do |f| %>
+          
+          <!-- Templates (if available) -->
+          <% if @templates.any? && !@section.persisted? %>
+            <div class="bg-blue-50 border-2 border-blue-200 rounded-lg p-6">
+              <h2 class="text-lg font-bold text-gray-800 mb-4">💡 Suggested Topics</h2>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                <% @templates.each do |template| %>
+                  <button type="button" onclick="applyTemplate('<%= template.title %>', '<%= template.prompt %>')" class="text-left p-3 bg-white rounded-lg border-2 border-transparent hover:border-indigo-400 transition-colors">
+                    <div class="font-semibold text-gray-800 text-sm"><%= template.title %></div>
+                    <div class="text-xs text-gray-600 mt-1"><%= template.prompt.truncate(60) %></div>
+                  </button>
+                <% end %>
+              </div>
+            </div>
+          <% end %>
+
+          <!-- Title -->
+          <div>
+            <%= f.label :title, "Section Title", class: "block text-sm font-bold text-gray-700 mb-2" %>
+            <%= f.text_field :title, id: "section_title", class: "w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 text-lg font-semibold", placeholder: "e.g., My Childhood Home", required: true %>
+          </div>
+
+          <!-- Years (Optional) -->
+          <div class="grid grid-cols-2 gap-4">
+            <div>
+              <%= f.label :start_year, "Start Year (Optional)", class: "block text-sm font-medium text-gray-700 mb-2" %>
+              <%= f.number_field :start_year, class: "w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500", placeholder: "1945", min: 1900, max: Time.current.year %>
+            </div>
+            <div>
+              <%= f.label :end_year, "End Year (Optional)", class: "block text-sm font-medium text-gray-700 mb-2" %>
+              <%= f.number_field :end_year, class: "w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500", placeholder: "1955", min: 1900, max: Time.current.year %>
+            </div>
+          </div>
+
+          <!-- Rich Text Editor -->
+          <div>
+            <%= f.label :content, "Content", class: "block text-sm font-bold text-gray-700 mb-2" %>
+            <div class="border-2 border-gray-300 rounded-lg overflow-hidden focus-within:ring-2 focus-within:ring-indigo-500">
+              <%= f.rich_text_area :content, class: "w-full min-h-96 px-4 py-3 focus:outline-none prose prose-lg max-w-none", placeholder: "Start writing your story here..." %>
+            </div>
+            <p class="text-sm text-gray-500 mt-2">Use the editor toolbar to format your text, add images, and style your content.</p>
+          </div>
+
+          <!-- Submit -->
+          <div class="flex items-center justify-between pt-6 border-t-2 border-gray-200">
+            <%= link_to "Cancel", story_chapter_path(@story, @chapter), class: "text-gray-600 hover:text-gray-800 font-medium" %>
+            <div class="space-x-3">
+              <%= f.submit "Save Section", class: "bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-8 py-3 rounded-lg font-bold hover:from-indigo-700 hover:to-purple-700 shadow-lg cursor-pointer" %>
+            </div>
+          </div>
+
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  function applyTemplate(title, prompt) {
+    document.getElementById('section_title').value = title;
+    // Focus the rich text editor and optionally insert the prompt as a placeholder
+    const editor = document.querySelector('trix-editor');
+    if (editor && !editor.editor.getDocument().toString().trim()) {
+      editor.editor.insertString(prompt + '\n\n');
+    }
+  }
+</script>
