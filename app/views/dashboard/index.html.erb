@@ -4,11 +4,12 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex justify-between h-16">
         <div class="flex items-center">
-          <h1 class="text-2xl font-bold text-indigo-600">Story Writer</h1>
+          <h1 class="text-2xl font-bold text-indigo-600"><%= t('app_name') %></h1>
         </div>
         <div class="flex items-center space-x-4">
-          <span class="text-gray-700">Welcome, <%= Current.user.name %></span>
-          <%= button_to "Sign Out", session_path, method: :delete, class: "bg-gray-200 hover:bg-gray-300 px-4 py-2 rounded-lg text-gray-700 font-medium" %>
+          <%= render 'shared/language_switcher' %>
+          <span class="text-gray-700"><%= t('welcome') %>, <%= Current.user.name %></span>
+          <%= button_to t('sign_out'), session_path, method: :delete, class: "bg-gray-200 hover:bg-gray-300 px-4 py-2 rounded-lg text-gray-700 font-medium" %>
         </div>
       </div>
     </div>
@@ -18,15 +19,15 @@
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
     <!-- Header -->
     <div class="mb-8">
-      <h1 class="text-4xl font-bold text-gray-900 mb-2">Dashboard</h1>
-      <p class="text-gray-600">Manage your life stories and collaborations</p>
+      <h1 class="text-4xl font-bold text-gray-900 mb-2"><%= t('dashboard.title') %></h1>
+      <p class="text-gray-600"><%= t('dashboard.subtitle') %></p>
     </div>
 
     <!-- My Stories Section -->
     <div class="mb-12">
       <div class="flex justify-between items-center mb-6">
-        <h2 class="text-2xl font-bold text-gray-800">My Stories</h2>
-        <%= link_to "Create New Story", new_story_path, class: "bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-6 py-3 rounded-lg font-bold hover:from-indigo-700 hover:to-purple-700 shadow-lg transform hover:scale-105 transition-all" %>
+        <h2 class="text-2xl font-bold text-gray-800"><%= t('dashboard.my_stories') %></h2>
+        <%= link_to t('dashboard.create_new_story'), new_story_path, class: "bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-6 py-3 rounded-lg font-bold hover:from-indigo-700 hover:to-purple-700 shadow-lg transform hover:scale-105 transition-all" %>
       </div>
 
       <% if @owned_stories.any? %>
@@ -46,10 +47,10 @@
                   <span class="px-3 py-1 bg-<%= story.status %>-100 text-<%= story.status %>-800 rounded-full text-sm font-medium">
                     <%= story.status.titleize %>
                   </span>
-                  <span class="text-sm text-gray-500"><%= story.chapters.count %> chapters</span>
+                  <span class="text-sm text-gray-500"><%= story.chapters.count %> <%= t('dashboard.chapters') %></span>
                 </div>
                 
-                <%= link_to "Open Story", story, class: "block w-full text-center bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-lg font-medium transition-colors" %>
+                <%= link_to t('dashboard.open_story'), story, class: "block w-full text-center bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-lg font-medium transition-colors" %>
               </div>
             </div>
           <% end %>
@@ -57,9 +58,9 @@
       <% else %>
         <div class="bg-white rounded-xl shadow-lg p-12 text-center">
           <span class="text-6xl mb-4 block">✍️</span>
-          <h3 class="text-2xl font-bold text-gray-800 mb-2">No Stories Yet</h3>
-          <p class="text-gray-600 mb-6">Start creating your first life story!</p>
-          <%= link_to "Create Your First Story", new_story_path, class: "inline-block bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-8 py-3 rounded-lg font-bold hover:from-indigo-700 hover:to-purple-700 shadow-lg" %>
+          <h3 class="text-2xl font-bold text-gray-800 mb-2"><%= t('dashboard.no_stories_yet') %></h3>
+          <p class="text-gray-600 mb-6"><%= t('dashboard.start_first_story') %></p>
+          <%= link_to t('dashboard.create_first_story'), new_story_path, class: "inline-block bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-8 py-3 rounded-lg font-bold hover:from-indigo-700 hover:to-purple-700 shadow-lg" %>
         </div>
       <% end %>
     </div>
@@ -67,7 +68,7 @@
     <!-- Collaborating Stories Section -->
     <% if @assisted_stories.any? %>
       <div class="mb-12">
-        <h2 class="text-2xl font-bold text-gray-800 mb-6">Stories I'm Helping With</h2>
+        <h2 class="text-2xl font-bold text-gray-800 mb-6"><%= t('dashboard.stories_helping_with') %></h2>
         
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           <% @assisted_stories.each do |story| %>
@@ -80,9 +81,9 @@
                 <% if story.story_profile %>
                   <p class="text-gray-600 mb-2"><%= story.story_profile.full_name %></p>
                 <% end %>
-                <p class="text-sm text-gray-500 mb-4">Owned by <%= story.user.name %></p>
+                <p class="text-sm text-gray-500 mb-4"><%= t('dashboard.owned_by') %> <%= story.user.name %></p>
                 
-                <%= link_to "View Story", story, class: "block w-full text-center bg-yellow-600 hover:bg-yellow-700 text-white px-4 py-2 rounded-lg font-medium transition-colors" %>
+                <%= link_to t('dashboard.view_story'), story, class: "block w-full text-center bg-yellow-600 hover:bg-yellow-700 text-white px-4 py-2 rounded-lg font-medium transition-colors" %>
               </div>
             </div>
           <% end %>

@@ -1,15 +1,15 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  life_phase: one
-  title: MyString
-  prompt: MyText
-  example: MyText
+  life_phase: family_heritage
+  title: Birth
+  prompt: Where were you born?
+  example: I was born in...
   sort_order: 1
 
 two:
-  life_phase: two
-  title: MyString
-  prompt: MyText
-  example: MyText
+  life_phase: child_years
+  title: First Memory
+  prompt: What is your first memory?
+  example: My first memory is...
   sort_order: 1

@@ -1,31 +1,159 @@
 # Files in the config/locales directory are used for internationalization and
 # are automatically loaded by Rails. If you want to use locales other than
 # English, add the necessary files in this directory.
-#
-# To use the locales, use `I18n.t`:
-#
-#     I18n.t "hello"
-#
-# In views, this is aliased to just `t`:
-#
-#     <%= t("hello") %>
-#
-# To use a different locale, set it with `I18n.locale`:
-#
-#     I18n.locale = :es
-#
-# This would use the information in config/locales/es.yml.
-#
-# To learn more about the API, please read the Rails Internationalization guide
-# at https://guides.rubyonrails.org/i18n.html.
-#
-# Be aware that YAML interprets the following case-insensitive strings as
-# booleans: `true`, `false`, `on`, `off`, `yes`, `no`. Therefore, these strings
-# must be quoted to be interpreted as strings. For example:
-#
-#     en:
-#       "yes": yup
-#       enabled: "ON"
 
 en:
-  hello: "Hello world"
+  # Common
+  app_name: "Story Writer"
+  welcome: "Welcome"
+  sign_out: "Sign Out"
+  sign_in: "Sign In"
+  email: "Email"
+  password: "Password"
+  save: "Save"
+  cancel: "Cancel"
+  edit: "Edit"
+  delete: "Delete"
+  back: "Back"
+  create: "Create"
+  update: "Update"
+  
+  # Navigation
+  nav:
+    dashboard: "Dashboard"
+    my_stories: "My Stories"
+    settings: "Settings"
+  
+  # Dashboard
+  dashboard:
+    title: "Dashboard"
+    subtitle: "Manage your life stories and collaborations"
+    my_stories: "My Stories"
+    create_new_story: "Create New Story"
+    no_stories_yet: "No Stories Yet"
+    start_first_story: "Start creating your first life story!"
+    create_first_story: "Create Your First Story"
+    stories_helping_with: "Stories I'm Helping With"
+    owned_by: "Owned by"
+    chapters: "chapters"
+    open_story: "Open Story"
+    view_story: "View Story"
+  
+  # Stories
+  stories:
+    title: "Stories"
+    new: "New Story"
+    edit: "Edit Story"
+    create: "Create Story"
+    update: "Update Story"
+    delete: "Delete Story"
+    confirm_delete: "Are you sure you want to delete this story?"
+    story_title: "Story Title"
+    subtitle: "Subtitle"
+    status: "Status"
+    overview: "Overview"
+    chapters_count: "Chapters"
+    sections_count: "Sections"
+    profile: "Profile"
+    create_profile: "Create Profile"
+    edit_profile: "Edit Profile"
+    generate_chapters: "Generate Chapters Automatically"
+    create_first_chapter: "Create First Chapter Manually"
+    no_chapters_yet: "No chapters yet"
+    complete_profile_first: "Complete the story profile first, and chapters will be automatically generated for you."
+    
+  # Story Profile
+  profile:
+    title: "Story Profile"
+    full_name: "Full Name"
+    birth_year: "Birth Year"
+    current_age: "Current Age"
+    gender: "Gender"
+    birthplace: "Birthplace"
+    education_level: "Education Level"
+    schools_attended: "Schools Attended"
+    primary_occupation: "Primary Occupation"
+    other_occupations: "Other Occupations"
+    military_service: "Military Service"
+    military_details: "Military Service Details"
+    major_awards: "Major Awards"
+    significant_life_events: "Significant Life Events"
+    hobbies_interests: "Hobbies & Interests"
+    influential_people: "Influential People"
+    life_mission: "Life Mission"
+    life_philosophy: "Life Philosophy"
+    advice_to_children: "Advice to Children"
+    greatest_lessons_learned: "Greatest Lessons Learned"
+    save_and_continue: "Save Profile & Continue"
+    auto_generate_note: "When you save the profile, personalized chapters will be automatically generated based on your age, education level, and military service."
+    
+  # Chapters
+  chapters:
+    title: "Chapters"
+    new: "New Chapter"
+    edit: "Edit Chapter"
+    create: "Create Chapter"
+    update: "Update Chapter"
+    delete: "Delete Chapter"
+    chapter_title: "Chapter Title"
+    description: "Description"
+    chapter_number: "Chapter Number"
+    sections: "Sections"
+    add_section: "Add Section"
+    no_sections_yet: "No sections yet"
+    start_writing: "Start writing the first section of this chapter"
+    
+  # Sections
+  sections:
+    title: "Sections"
+    new: "New Section"
+    edit: "Edit Section"
+    create: "Create Section"
+    update: "Update Section"
+    delete: "Delete Section"
+    section_title: "Section Title"
+    content: "Content"
+    start_year: "Start Year"
+    end_year: "End Year"
+    
+  # Status
+  status:
+    draft: "Draft"
+    in_progress: "In Progress"
+    completed: "Completed"
+    published: "Published"
+    
+  # Education Levels
+  education:
+    elementary: "Elementary School"
+    middle_school: "Middle School"
+    high_school: "High School"
+    college: "College"
+    graduate: "Graduate School"
+    
+  # Gender
+  gender:
+    male: "Male"
+    female: "Female"
+    other: "Other"
+    
+  # Messages
+  messages:
+    profile_saved: "Profile saved successfully! %{count} chapters have been automatically generated for your story."
+    story_created: "Story was successfully created."
+    story_updated: "Story was successfully updated."
+    story_deleted: "Story was deleted."
+    chapter_created: "Chapter was created."
+    chapter_updated: "Chapter was updated."
+    chapter_deleted: "Chapter was deleted."
+    section_created: "Section was created."
+    section_updated: "Section was updated."
+    section_deleted: "Section was deleted."
+    chapters_generated: "%{count} chapters were generated."
+    language_changed: "Language has been changed."
+    
+  # Errors
+  errors:
+    not_authorized: "You are not authorized to perform this action."
+    not_found: "Not found."
+    profile_required: "You must create a story profile before generating chapters."

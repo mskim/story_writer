@@ -7,6 +7,9 @@ Rails.application.routes.draw do
   root "dashboard#index"
   get "dashboard", to: "dashboard#index"
 
+  # Language switching
+  patch "language", to: "languages#update", as: :update_language
+
   # Stories with nested resources
   resources :stories do
     # Profile setup (step 2 after creating story)

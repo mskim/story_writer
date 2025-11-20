@@ -2,16 +2,16 @@
 
 one:
   story: one
-  life_phase: one
-  title: MyString
-  description: MyText
+  life_phase: family_heritage
+  title: Family Heritage
+  description: Your family history
   chapter_number: 1
   sort_order: 1
 
 two:
   story: two
-  life_phase: two
-  title: MyString
-  description: MyText
-  chapter_number: 1
-  sort_order: 1
+  life_phase: child_years
+  title: Child Years
+  description: Your early years
+  chapter_number: 2
+  sort_order: 2

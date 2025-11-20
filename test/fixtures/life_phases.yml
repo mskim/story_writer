@@ -1,15 +1,85 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  name: MyString
-  slug: MyString
-  description: MyText
+family_heritage:
+  name: Family Heritage
+  slug: family-heritage
+  description: Your family history
   sort_order: 1
-  icon: MyString
+  icon: home
 
-two:
-  name: MyString
-  slug: MyString
-  description: MyText
-  sort_order: 1
-  icon: MyString
+child_years:
+  name: Child Years
+  slug: child-years
+  description: Your early years
+  sort_order: 2
+  icon: baby
+
+school_years:
+  name: School Years
+  slug: school-years
+  description: Your school years
+  sort_order: 3
+  icon: book
+
+college_years:
+  name: College Years
+  slug: college-years
+  description: Your college years
+  sort_order: 4
+  icon: graduation-cap
+
+military_service:
+  name: Military Service
+  slug: military-service
+  description: Your military service
+  sort_order: 5
+  icon: medal
+
+romance_marriage:
+  name: Romance & Marriage
+  slug: romance-marriage
+  description: Your romantic life
+  sort_order: 6
+  icon: heart
+
+career_years:
+  name: Career Years
+  slug: career-years
+  description: Your working life
+  sort_order: 7
+  icon: briefcase
+
+raising_family:
+  name: Raising Family
+  slug: raising-family
+  description: Raising your children
+  sort_order: 8
+  icon: users
+
+middle_age:
+  name: Middle Age
+  slug: middle-age
+  description: Your middle years
+  sort_order: 9
+  icon: sun
+
+retirement:
+  name: Retirement
+  slug: retirement
+  description: Your retirement
+  sort_order: 10
+  icon: sunset
+
+golden_years:
+  name: Golden Years
+  slug: golden-years
+  description: Your later years
+  sort_order: 11
+  icon: star
+
+life_wisdom:
+  name: Life Wisdom
+  slug: life-wisdom
+  description: Your wisdom
+  sort_order: 12
+  icon: lightbulb
