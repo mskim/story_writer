@@ -13,7 +13,7 @@ class ApplicationController < ActionController::Base
   def set_locale
     # Ensure session is resumed before checking user
     resume_session if Current.session.nil?
-    
+
     Rails.logger.debug "DEBUG: set_locale called"
     if Current.user
       user_language = Current.user.language&.to_sym
