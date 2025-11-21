@@ -51,7 +51,8 @@
           <div>
             <%= f.label :content, "Content", class: "block text-sm font-bold text-gray-700 mb-2" %>
             <div class="border-2 border-gray-300 rounded-lg overflow-hidden focus-within:ring-2 focus-within:ring-indigo-500">
-              <%= f.rich_text_area :content, class: "w-full min-h-96 px-4 py-3 focus:outline-none prose prose-lg max-w-none", placeholder: "Start writing your story here..." %>
+              <%= f.hidden_field :content, id: "section_content_trix" %>
+              <trix-editor input="section_content_trix" class="w-full min-h-96 px-4 py-3 focus:outline-none prose prose-lg max-w-none" placeholder="Start writing your story here..."></trix-editor>
             </div>
             <p class="text-sm text-gray-500 mt-2">Use the editor toolbar to format your text, add images, and style your content.</p>
           </div>
